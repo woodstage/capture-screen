@@ -25,7 +25,7 @@ export default validate(merge(baseConfig, {
     loaders: [
       // Extract all .global.css to style.css as is
       {
-        test: /\.global\.css$/,
+        test: /\.global\.scss$/,
         loader: ExtractTextPlugin.extract(
           'style-loader',
           'css-loader'
@@ -34,10 +34,11 @@ export default validate(merge(baseConfig, {
 
       // Pipe other styles through css modules and append to style.css
       {
-        test: /^((?!\.global).)*\.css$/,
+        test: /^((?!\.global).)*\.scss$/,
         loader: ExtractTextPlugin.extract(
           'style-loader',
-          'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'
+          'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
+          'sass-loader'
         )
       },
 
